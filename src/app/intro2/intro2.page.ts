@@ -12,6 +12,7 @@ export class Intro2Page implements OnInit {
   constructor( private ble:BluetoothSerial) { }
 
   ngOnInit() {
+    this.ActivarBluetooth();
   }
   
   mensaje:any;

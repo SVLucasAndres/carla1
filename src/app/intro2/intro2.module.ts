@@ -16,6 +16,7 @@ import { Intro2Page } from './intro2.page';
     IonicModule,
     Intro2PageRoutingModule
   ],
-  declarations: [Intro2Page]
+  declarations: [Intro2Page],
+  providers:[BluetoothSerial]
 })
 export class Intro2PageModule {}
