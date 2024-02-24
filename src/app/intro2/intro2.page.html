@@ -25,9 +25,11 @@
   </div>
   <div class="container">
     <ion-text class="tit-tut">Lista de dispositivos Bluetooth:</ion-text>
-    <div *ngFor="let disp of mensaje">
-      {{mensaje.name}}
-    </div>
+    <ion-list>
+      <ion-item *ngFor="let disp of mensaje">
+        {{disp.name}}
+      </ion-item>
+    </ion-list>
   </div>
   
   <div class="but">
