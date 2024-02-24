@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BluetoothSerial } from '@awesome-cordova-plugins/bluetooth-serial/ngx';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { BluetoothSerial } from '@awesome-cordova-plugins/bluetooth-serial/ngx';
 })
 export class Intro2Page implements OnInit {
 
-  constructor( private ble:BluetoothSerial) { }
+  constructor( private ble:BluetoothSerial ,private alert:AlertController) { }
 
   ngOnInit() {
     this.ActivarBluetooth();
@@ -20,14 +21,23 @@ export class Intro2Page implements OnInit {
     this.ble.isEnabled().then(response =>{
       this.lista();
     },error=>{
-      console.log("error");
+      this.presentAlert(error);
     });
   }
   lista(){
     this.ble.list().then(response =>{
       this.mensaje= response;
     },error=>{
-      console.log(error);
+      this.presentAlert(error);
     });
+  }
+
+  async presentAlert(meserror:any) {
+    const alert = await this.alert.create({
+      header: meserror,
+      buttons: ['OK'],
+    });
+
+    await alert.present();
   }
 }
