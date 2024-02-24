@@ -1,13 +1,9 @@
   import { Component, OnInit } from '@angular/core';
-  import { HttpClient } from '@angular/common/http';
-  import axios from 'axios'; 
   import { ActionSheetController, NavController, ToastController } from '@ionic/angular';
-  import { Router } from '@angular/router';
   import { Storage } from '@ionic/storage-angular'; 
   import { collection, doc, getDocs, query, where } from 'firebase/firestore';
   import { Firestore } from '@angular/fire/firestore';
   import { DataService } from '../data.service';
-  import { consumerPollProducersForChange } from '@angular/core/primitives/signals';
 
   @Component({
     selector: 'app-prin',
