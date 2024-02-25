@@ -12,6 +12,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { FormsModule } from '@angular/forms';
+import { EliminarService } from './eliminar.service'; 
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { FormsModule } from '@angular/forms';
   imports: [HttpClientModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule, 
     IonicStorageModule.forRoot(), provideFirebaseApp(() => initializeApp(environment.firebaseData)), 
     provideFirestore(() => getFirestore()), FormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, EliminarService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

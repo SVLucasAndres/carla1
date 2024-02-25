@@ -31,7 +31,25 @@ export class Intro2Page implements OnInit {
       this.presentAlert(error);
     });
   }
-
+  async conect(adress:any){
+    this.ble.connect(adress).subscribe(success=>{
+      this.deviceConnected();
+    }, error=>{
+      this.presentAlert(error);
+    })
+  }
+  deviceConnected(){
+    this.ble.subscribe('/n').subscribe(success=>{
+      console.log(success);
+    })
+  }
+  enviar(string:string){
+    this.ble.write(string).then(response=>{
+      console.log("oky");
+    }, error=>{
+      this.presentAlert(error);
+    })
+  }
   async presentAlert(meserror:any) {
     const alert = await this.alert.create({
       header: meserror,

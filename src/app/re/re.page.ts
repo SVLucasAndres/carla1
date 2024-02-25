@@ -36,7 +36,8 @@ export class RePage implements OnInit {
   async showLoading() {
     const loading = await this.loadingCtrl.create({
       message: 'Creando usuario...',
-      duration: 1500
+      duration: 1500,
+      spinner: 'dots'
     });
 
     loading.present();

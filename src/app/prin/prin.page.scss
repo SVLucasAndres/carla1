@@ -14,20 +14,25 @@ ion-content {
     display:flex;
     justify-content: center;
   }
+  .info{
+    display: flex;
+    flex-direction: column;
+  }
   ion-card{
     --background:#E6D435;  
     border: 5px solid rgb(0, 0, 0);
     border-radius: 10px;
     margin: 5%;
     width: 90%;
+    margin-top: 4rem;
     height: 10rem;
+    display: flex;
+    align-items: center;
   }
   ion-card > ion-icon{
     color:#000;
   }
   ion-card-title{
-  top: 30%;
-  right: -27%;
    color: #000000;
   text-align: center;
   font-size: 190%;
@@ -38,7 +43,6 @@ ion-content {
   .fig{
     font-size: 500%;
     color: #000000;
-    position: absolute;
     top: 5%;
     left: 5%;
    
@@ -111,14 +115,6 @@ top: 16%;
   position: absolute;
   width: 140%;
  
-}
-.fig{
-  font-size: 800%;
-  color: #FFF;
-  position: absolute;
-  top: 15%;
-  left: 3%;
-
 }
 
 .conec{

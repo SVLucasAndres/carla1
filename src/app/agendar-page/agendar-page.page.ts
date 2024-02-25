@@ -11,6 +11,14 @@ import { doc, setDoc } from 'firebase/firestore';
 export class AgendarPagePage implements OnInit {
 
   ngOnInit() {
+    this.hora();
+  }
+  fechaHoraFormateada:any;
+  async hora(){
+    const fecha = new Date();
+    const fechaFormateada = fecha.toISOString().split('T')[0];
+    const horaFormateada = fecha.toLocaleTimeString('es-EC', { hour12: false });
+    this.fechaHoraFormateada = await `${fechaFormateada}T${horaFormateada}`;
   }
   formData = {
     logoCom:"",

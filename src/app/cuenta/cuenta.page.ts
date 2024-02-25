@@ -31,7 +31,7 @@ export class CuentaPage implements OnInit {
             
           },
           handler: () => {
-            this.router.navigateForward('inses');
+            this.router.navigateForward('home');
           },
         },
         {

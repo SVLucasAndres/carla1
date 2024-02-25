@@ -1,8 +1,8 @@
   import { Component, OnInit , AfterViewInit} from '@angular/core';
   import { Firestore } from '@angular/fire/firestore';
-  import { AnimationController, IonRefresher } from '@ionic/angular';
+  import { AlertController, AnimationController, IonRefresher, LoadingController } from '@ionic/angular';
   import { Storage } from '@ionic/storage-angular';
-  import { collection, doc, getDocs, query, where } from 'firebase/firestore';
+  import { collection, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore';
   import { DataService } from '../data.service'; 
   import { PopoverController } from '@ionic/angular';
   @Component({
@@ -13,7 +13,7 @@
   export class AgendarPage implements OnInit{
 
   
-    constructor(private service:DataService,private db:Firestore, private storage:Storage,private popoverController: PopoverController, ) { }
+    constructor(private loadingCtrl:LoadingController , private alertController:AlertController,private service:DataService,private db:Firestore, private storage:Storage,private popoverController: PopoverController, ) { }
     
     ngOnInit() { 
       this.obtenerTareas();
@@ -57,7 +57,53 @@
         event.target.complete();
       }, 2000);
     }
+    async modificar(id:any){
+      console.log("Modifica a: "+id);
+    }
+
+    async eliminar(id:any){
+      this.presentAlert(id);
+    }
+
+    async presentAlert(id: any) {
+      const alert = await this.alertController.create({
+        header: 'Estás a punto de eliminar esta tarea',
+        subHeader: 'Y no se puede recuperar',
+        message: '¿Estás seguro?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('No eliminó');
+            },
+          },
+          {
+            text: 'OK',
+            role: 'confirm',
+            handler: async () => {
+              this.ruta = collection(this.db, 'Tareas');
+              const docRef = doc(this.db, 'Tareas', id);
+              await deleteDoc(docRef);
+              this.loaEliminar();
+              this.obtenerTareas();
+              this.loadingCtrl.dismiss();
+            },
+          },
+        ],
+      });
     
+      await alert.present();
+    }
+    async loaEliminar() {
+      const loading = await this.loadingCtrl.create({
+        message: 'Eliminando...',
+        duration: 1500,
+        spinner: 'dots'
+      });
+  
+      loading.present();
+    }
   }
 
   interface datauser {

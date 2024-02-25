@@ -9,16 +9,25 @@ import { collection, deleteDoc, doc, getDocs, query, where } from 'firebase/fire
 })
 export class EliminarService {
 
-  constructor(private storage:Storage,private db:Firestore) {
-    this.eliminar();
+  constructor(private db:Firestore) {
+    this.repeliminar();
   }
+
+  repeliminar(){
+    this.eliminar();
+    setInterval(() => {
+      this.eliminar();
+      console.log("eliminado registro");
+    }, 60000);
+  }
+
   usuario:any;
   ruta:any;
   tareas:any[]=[];
   async eliminar(){
     const fecha = new Date();
-    const fechaFormateada = fecha.toISOString().split('T')[0]; // Obtenemos la parte de la fecha en formato YYYY-MM-DD
-    const horaFormateada = fecha.toLocaleTimeString('es-EC', { hour12: false }); // Obtenemos la parte de la hora en formato HH:mm:ss
+    const fechaFormateada = fecha.toISOString().split('T')[0];
+    const horaFormateada = fecha.toLocaleTimeString('es-EC', { hour12: false });
     const fechaHoraFormateada = await `${fechaFormateada}T${horaFormateada}`;
     this.ruta =  await collection(this.db,'Tareas');
     const ref = await query(this.ruta);

@@ -71,9 +71,24 @@
   <ion-label class="tar">TAREAS:</ion-label>
   <div class="div-bot">
     <ion-button class="bot" [routerLink]="['/agendar-page']" > <ion-icon name="add-outline"></ion-icon></ion-button>
-  </div>  
+  </div> 
+  
   <div class="cards" *ngFor="let tarea of tareas">
+    <ion-fab>
+      <ion-fab-button>
+        <ion-icon name="options-outline" color="dark"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="bottom">
+        <ion-fab-button>
+          <ion-icon name="trash" color="danger" (click)=eliminar(tarea.id)></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button>
+          <ion-icon name="create" color="warning" (click)=modificar(tarea.id)></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab> 
     <ion-card [style.background-color]="tarea.color">
+      
       <ion-icon [name]="tarea.logoCom" class="fig"></ion-icon>
       <ion-card-title class="com">{{tarea.comando}}</ion-card-title>
     </ion-card>

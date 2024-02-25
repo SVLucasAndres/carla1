@@ -32,8 +32,10 @@
   <div class="cards" *ngIf="tareas.length > 0">
     <ion-card [style.background-color]="tareas[0].color">
       <ion-icon [name]="tareas[0].logoCom" class="fig"></ion-icon>
-      <ion-card-title class="com">{{tareas[0].comando}}</ion-card-title>
-      <ion-card-title class="com">{{fecha}}</ion-card-title>
+      <div class="info">
+        <ion-card-title class="com">{{tareas[0].comando}}</ion-card-title>
+        <ion-card-title class="com">{{fecha}}</ion-card-title>
+      </div>
     </ion-card>
   </div>
  

@@ -45,7 +45,8 @@ export class InsesPage implements OnInit {
   async showLoading() {
     const loading = await this.loadingCtrl.create({
       message: 'Iniciando sesión',
-      duration: 1500
+      duration: 1500,
+      spinner: 'dots'
     });
 
     loading.present();

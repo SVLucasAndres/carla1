@@ -100,7 +100,7 @@
         <input type="color" id="color" name="color" placeholder="color" [(ngModel)]="formData.color" (ngModelChange)="actualizarEstadoBoton()" >
       </ion-item>
       <ion-item>
-        <ion-datetime name="fecha" [(ngModel)]="formData.fecha" displayFormat="YYYY-MM-DDTHH:mm" (ngModelChange)="actualizarEstadoBoton()"></ion-datetime>
+        <ion-datetime name="fecha" [min]=fechaHoraFormateada [value]=fechaHoraFormateada [(ngModel)]="formData.fecha" displayFormat="YYYY-MM-DDTHH:mm" (ngModelChange)="actualizarEstadoBoton()"></ion-datetime>
       </ion-item>      
     </form>
   </div>
