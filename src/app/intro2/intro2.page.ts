@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BluetoothSerial } from '@awesome-cordova-plugins/bluetooth-serial/ngx';
 import { AlertController } from '@ionic/angular';
-
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-intro2',
@@ -31,12 +31,12 @@ export class Intro2Page implements OnInit {
       this.presentAlert(error);
     });
   }
-  async conect(adress:any){
-    this.ble.connect(adress).subscribe(success=>{
+  async conect(address:any){
+    await this.ble.connect(address).subscribe(success =>{
       this.deviceConnected();
-    }, error=>{
-      this.presentAlert(error);
-    })
+      this.presentAlert(success);
+      this.enviar("Hola, soy Carla!");
+    });
   }
   deviceConnected(){
     this.ble.subscribe('/n').subscribe(success=>{
