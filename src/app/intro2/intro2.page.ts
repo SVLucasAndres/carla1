@@ -49,7 +49,7 @@ export class Intro2Page implements OnInit {
       this.enviar("Hola, soy Carla!");
       await this.ble.available();
       const mensaje = this.recibir();
-      if(await mensaje == "2312"){
+      if((await mensaje).trim() === "2312"){
         this.router.navigateRoot('intro3');
       }else{
         this.presentAlert("Este dispositivo no es CARLA");
