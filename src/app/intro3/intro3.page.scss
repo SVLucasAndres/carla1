@@ -95,10 +95,9 @@ left: 35%;
   width: 3rem;
 }
 .but{
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-end;
-  height: 70%;
+  position: absolute;
+  margin-left: 50%;
+  margin-top: 80%;
 }
 .omi{
 display: flex;
