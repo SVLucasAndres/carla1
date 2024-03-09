@@ -55,9 +55,10 @@
         const fechaAlmacenada = new Date(this.tareas[0].fecha);
         const horaActual = new Date();
         const diferenciaTiempo = fechaAlmacenada.getTime() - horaActual.getTime();
+        const diasRestantes = Math.floor(diferenciaTiempo / (1000 * 60 * 60 * 24));
         const horasRestantes = Math.floor(diferenciaTiempo / (1000 * 60 * 60));
         const minutosRestantes = Math.floor((diferenciaTiempo % (1000 * 60 * 60)) / (1000 * 60));
-        this.fecha = `${horasRestantes} horas y ${minutosRestantes} minutos`;
+        this.fecha = `Tiempo restante: ${diasRestantes} días, ${horasRestantes} horas y ${minutosRestantes} minutos`;
       
       }
       handleRefresh(event:any) {
