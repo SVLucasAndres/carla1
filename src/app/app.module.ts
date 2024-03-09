@@ -15,14 +15,14 @@ import { FormsModule } from '@angular/forms';
 import { EliminarService } from './eliminar.service'; 
 import { IonicSlides } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {BarcodeScanner} from '@awesome-cordova-plugins/barcode-scanner/ngx';
+import {Barcode, BarcodeScanner} from '@capacitor-mlkit/barcode-scanning'
 
 @NgModule({
   declarations: [AppComponent],
   imports: [HttpClientModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule, 
     IonicStorageModule.forRoot(), provideFirebaseApp(() => initializeApp(environment.firebaseData)), 
     provideFirestore(() => getFirestore()), FormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, EliminarService, BarcodeScanner],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, EliminarService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
