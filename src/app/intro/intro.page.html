@@ -23,19 +23,44 @@
     <ion-text class="txt1">CARLA</ion-text>
     <ion-text class="txt2">Asistente virtual</ion-text>
   </div>
-  <div class="container">
-    <ion-text class="tit-tut">Revisa el siguiente video:</ion-text>
-    <div>
-      
-    </div>
-  </div>
-  
-  <div class="but">
-    <ion-button fill="clear" [routerLink]="'/intro2'" class="der">
-      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
-        <path d="M14.3746 3.97454C14.6996 3.64959 15.1404 3.46704 15.6 3.46704C16.0597 3.46704 16.5005 3.64959 16.8255 3.97454L24.6255 11.7745C24.9504 12.0996 25.133 12.5404 25.133 13C25.133 13.4596 24.9504 13.9004 24.6255 14.2255L16.8255 22.0255C16.4986 22.3412 16.0607 22.5159 15.6063 22.512C15.1518 22.508 14.7171 22.3257 14.3957 22.0044C14.0743 21.683 13.892 21.2482 13.8881 20.7938C13.8841 20.3393 14.0588 19.9014 14.3746 19.5745L19.0667 14.7333H2.60003C2.14032 14.7333 1.69944 14.5507 1.37438 14.2257C1.04932 13.9006 0.866699 13.4597 0.866699 13C0.866699 12.5403 1.04932 12.0994 1.37438 11.7744C1.69944 11.4493 2.14032 11.2667 2.60003 11.2667H19.0667L14.3746 6.42547C14.0496 6.10042 13.8671 5.65962 13.8671 5.2C13.8671 4.74039 14.0496 4.29959 14.3746 3.97454Z" fill="white"/>
-      </svg>  
-    </ion-button>
-    
-  </div>
+      <swiper-container pagination="true" class="container">
+        <swiper-slide>
+            <h3>¡Hora de conectarnos con CARLA!</h3>
+            <p>Es realmente simple, lo único que debes hacer es seguir los pasos a continuación.<br><br>Desliza a la siguiente página</p>
+        </swiper-slide>
+        <swiper-slide>
+          <h3>Paso 1: Busca el código QR</h3>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <p>Este es un código QR, búscalo en CARLA</p>
+              </ion-col>
+              <ion-col size="6">
+                <img src="https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcSh-wrQu254qFaRcoYktJ5QmUhmuUedlbeMaQeaozAVD4lh4ICsGdBNubZ8UlMvWjKC">
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </swiper-slide>
+        <swiper-slide>
+          <h3>Paso 2: Escanea el código QR</h3>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <p>Haz clic en el siguiente botón para abrir la cámara y escanear el código</p>
+              </ion-col>
+              <ion-col size="6">
+                <ion-button (click)="scan()">
+                  <ion-icon slot="icon-only" name="qr-code-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </swiper-slide>
+      </swiper-container>
+      <div class="boton">
+        <ion-button [routerLink]="'/prin'" class="salir">
+          <ion-icon slot="start" name="exit"></ion-icon>
+          <ion-label>Salir</ion-label>
+        </ion-button>
+      </div>
   </ion-content>

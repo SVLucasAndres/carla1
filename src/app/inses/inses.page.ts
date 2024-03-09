@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import axios from 'axios'; 
 import { AlertController, LoadingController, NavController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { Storage } from '@ionic/storage-angular'; 
+  import { Storage } from '@ionic/storage-angular'; 
 import { Firestore,getDoc,doc,docData  } from '@angular/fire/firestore';
 import { collection } from 'firebase/firestore';
 
