@@ -10,21 +10,19 @@ import { BarcodeScanner,Barcode } from '@capacitor-mlkit/barcode-scanning';
 export class IntroPage implements OnInit {
   isSupported = false;
   barcodes: Barcode[] = [];
-  constructor(private alertController:AlertController) { 
-  }
+
+  constructor(private alertController: AlertController) {}
 
   ngOnInit() {
     BarcodeScanner.isSupported().then((result) => {
       this.isSupported = result.supported;
-    }, error =>{
-      this.presentAlert(error);
-    }
-    );
+    });
   }
+
   async scan(): Promise<void> {
     const granted = await this.requestPermissions();
     if (!granted) {
-      this.presentAlertS();
+      this.presentAlert();
       return;
     }
     const { barcodes } = await BarcodeScanner.scan();
@@ -36,18 +34,12 @@ export class IntroPage implements OnInit {
     return camera === 'granted' || camera === 'limited';
   }
 
-  async presentAlertS(): Promise<void> {
+  async presentAlert(): Promise<void> {
     const alert = await this.alertController.create({
       header: 'Permission denied',
       message: 'Please grant camera permission to use the barcode scanner.',
       buttons: ['OK'],
     });
     await alert.present();
-  }
-  async presentAlert(id: any) {
-    const alert = await this.alertController.create({
-      message: id,
-    });
-    this.presentAlert(alert);
   }
 }
