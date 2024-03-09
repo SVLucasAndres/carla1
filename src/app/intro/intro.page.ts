@@ -16,7 +16,10 @@ export class IntroPage implements OnInit {
   ngOnInit() {
     BarcodeScanner.isSupported().then((result) => {
       this.isSupported = result.supported;
-    });
+    }, error =>{
+      this.presentAlert(error);
+    }
+    );
   }
   async scan(): Promise<void> {
     const granted = await this.requestPermissions();
