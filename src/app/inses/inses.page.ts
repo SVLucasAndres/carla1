@@ -68,10 +68,6 @@ export class InsesPage implements OnInit {
       this.presentToast('bottom');
     }
   }
-
-  
-  
-
 }
 interface datauser {
   nombreNino: string;

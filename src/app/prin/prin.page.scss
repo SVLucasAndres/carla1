@@ -24,7 +24,6 @@ ion-content {
     border-radius: 10px;
     margin: 5%;
     width: 90%;
-    margin-top: 4rem;
     height: 10rem;
     display: flex;
     align-items: center;
@@ -94,13 +93,11 @@ font-size: 130%;
 }
 .tar{
   color: #FFF;
-font-size: 160%;
+  font-size: 1.2rem;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
-position: absolute;
-left: 5%;
-top: 16%;
+margin:2rem;
 }
 
 .gen{
@@ -119,13 +116,11 @@ top: 16%;
 
 .conec{
   color: #FFF;
-font-size: 160%;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-position: absolute;
-left: 5%;
-top: 60%;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin:2rem;
 }
 ion-fab{
   border: 5px solid rgb(0, 0, 0);

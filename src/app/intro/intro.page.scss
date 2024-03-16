@@ -17,6 +17,27 @@ gap: 10px;
   justify-content: center;
   align-items: flex-end;
 }
+.ingresos{
+  z-index: 0;
+  position: relative;
+}
+swiper-slide{
+  position: relative;
+}
+.correcto > ion-icon{
+  font-size: 100px;
+}
+.correcto{
+  padding: 1rem;
+  text-align: center;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color:#000;
+}
 ion-text {
   font-family: Arial, Helvetica, sans-serif;
   }

@@ -17,7 +17,9 @@
     }
     ngOnInit() {
       this.obtenerTareas();
+      this.obtenerCarla();
     }  
+
     tareas:any[]=[];
       ruta:any;
       user:any;
@@ -28,7 +30,28 @@
       logoCom: any;
       id: any;
       usuario: any;
-    async obtenerTareas(){
+      user1:any;
+      nombre:any;
+      code:any;
+      carla:boolean = false;
+      async obtenerCarla(){
+        this.user = await this.storage.get('User');
+        this.ruta = collection(this.db, 'Carlas');
+        const ref = query(this.ruta, where('usuario', '==', this.user));
+        const consulta = await getDocs(ref);
+        consulta.forEach(element => {
+          const dato = element.data() as carla;
+          if (dato.usuario === this.user) {
+            this.user1 = dato.usuario;
+            this.nombre = dato.nombre;
+            this.code = dato.codigo;
+            console.log(this.user1,this.nombre,this.code);
+            this.carla = true;
+          }
+        });
+        
+      }
+      async obtenerTareas(){
       this.user = await this.storage.get('User');
       this.ruta = collection(this.db, 'Tareas');
       const ref = query(this.ruta, where('usuario', '==', this.user));
@@ -64,6 +87,7 @@
       handleRefresh(event:any) {
         setTimeout(() => {
           this.obtenerTareas();
+          this.obtenerCarla();
           event.target.complete();
         }, 2000);
       }
@@ -71,6 +95,11 @@
       tiempoRes(){
         
       }
+  }
+  interface carla {
+    nombre: string;
+    codigo: string;
+    usuario: string;
   }
   interface datauser {
     color: string;

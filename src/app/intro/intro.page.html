@@ -23,38 +23,104 @@
     <ion-text class="txt1">CARLA</ion-text>
     <ion-text class="txt2">Asistente virtual</ion-text>
   </div>
-      <swiper-container pagination="true" class="container">
+      <swiper-container pagination="true" class="container" (swiperDidChange)="cambiado()">
         <swiper-slide>
             <h3>¡Hora de conectarnos con CARLA!</h3>
             <p>Es realmente simple, lo único que debes hacer es seguir los pasos a continuación.<br><br>Desliza a la siguiente página</p>
         </swiper-slide>
         <swiper-slide>
-          <h3>Paso 1: Busca el código QR</h3>
-          <ion-grid>
-            <ion-row>
+          <h3>Paso 1: Busca el código de 4 dígitos</h3>
               <ion-col size="6">
-                <p>Este es un código QR, búscalo en CARLA</p>
+                <p>Busca un código de 4 digitos en la base de carla.</p>
               </ion-col>
-              <ion-col size="6">
-                <img src="https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcSh-wrQu254qFaRcoYktJ5QmUhmuUedlbeMaQeaozAVD4lh4ICsGdBNubZ8UlMvWjKC">
-              </ion-col>
-            </ion-row>
-          </ion-grid>
         </swiper-slide>
         <swiper-slide>
-          <h3>Paso 2: Escanea el código QR</h3>
+          <div *ngIf="go" class="correcto">
+            <ion-icon name="warning"></ion-icon>
+            <p>CÓDIGO CORRECTO. Esto ya no lo puedes editar, para corregir haz clic en Salir e inténtalo de nuevo</p>
+          </div>
+          <div *ngIf="!go">
+            <h3>Paso 2: Ingresa el código</h3>
           <ion-grid>
             <ion-row>
               <ion-col size="6">
-                <p>Haz clic en el siguiente botón para abrir la cámara y escanear el código</p>
+                <p>Ingresa el código que encontraste y haz clic en el botón para validar</p>
               </ion-col>
               <ion-col size="6">
-                <ion-button (click)="scan()" [disabled]="!isSupported">
-                  <ion-icon slot="icon-only" name="qr-code-outline"></ion-icon>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="3"><ion-input color="light" placeholder="X" [clearOnEdit]="true" #code1 (ionInput)="focusSiguiente(code2)" maxlength=1 [(ngModel)]="cod1"></ion-input></ion-col>
+                    <ion-col size="3"><ion-input color="light" placeholder="X" [clearOnEdit]="true" #code2 (ionInput)="focusSiguiente(code3)" maxlength=1 [(ngModel)]="cod2"></ion-input></ion-col>
+                    <ion-col size="3"><ion-input color="light" placeholder="X" [clearOnEdit]="true" #code3 (ionInput)="focusSiguiente(code4)" maxlength=1 [(ngModel)]="cod3"></ion-input></ion-col>
+                    <ion-col size="3"><ion-input color="light" placeholder="X" [clearOnEdit]="true" #code4 maxlength=1 (ionInput)="focusSiguiente(code5)" [(ngModel)]="cod4"></ion-input></ion-col>
+                  </ion-row>
+                </ion-grid>
+                <ion-button (click)="scan()">
+                  <ion-icon slot="icon-only" name="checkmark-outline"></ion-icon>
                 </ion-button>
               </ion-col>
             </ion-row>
           </ion-grid>
+          </div>
+          <p *ngIf="go">El código es correcto, desliza a la siguiente página</p>
+        </swiper-slide>
+        <swiper-slide>
+          <div *ngIf="!go" class="correcto">
+            <ion-icon name="warning"></ion-icon>
+            <p>COMPLETA EL PASO ANTERIOR PARA SEGUIR</p>
+          </div>
+          <div *ngIf="go" class="ingresos">
+            <h3>Paso 3: Dale un nombre a tu CARLA</h3>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <p>Es para identificarla en ocasiones posteriores, aún así, te responderá unicamente a CARLA-</p>
+              </ion-col>
+              <ion-col size="6">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="12"><ion-input color="light" placeholder="Nombre" [clearOnEdit]="true"[(ngModel)]="name"></ion-input></ion-col>
+                  </ion-row>
+                </ion-grid>
+                <ion-button (click)="nameInput()">
+                  <ion-icon slot="icon-only" name="checkmark-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          </div>
+          
+        </swiper-slide>
+        <swiper-slide>
+          <div *ngIf="!go1" class="correcto">
+            <ion-icon name="warning"></ion-icon>
+            <p>COMPLETA EL PASO ANTERIOR PARA SEGUIR</p>
+          </div>
+          <div *ngIf="go1" class="ingresos">
+            <h3>Paso 4: Verifica la información</h3>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <p>Revisa la información que ingresaste, y ya habrás completado la configuración</p>
+                <ion-button (click)="correct()">
+                  <ion-icon slot="icon-only" name="checkmark-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+              <ion-col size="6">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="12"><h4>Nombre: </h4><p>{{name}}</p></ion-col>
+                    <ion-row>
+                      <ion-col size="12"><h4>Código: </h4><p>{{codigo}}</p></ion-col>
+                    </ion-row>
+                  </ion-row>
+                </ion-grid>
+                
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          </div>
+          
         </swiper-slide>
       </swiper-container>
       <div class="boton">
